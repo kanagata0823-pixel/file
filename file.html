@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>帳票類 ビューア</title>
+<title>ツリー PDF ビューア</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -294,7 +294,7 @@ min-height:calc(1.7em * 5 + 20px);
 
 <div class="pdf-frame-wrap" id="pdfWrap">
 <div class="pdf-shadow" id="pdfShadow">
-<iframe class="pdf-frame" id="pdfFrame" src="" title="PDF Viewer"></iframe>
+<iframe class="pdf-frame" id="pdfFrame" src="" title="Spreadsheet Viewer"></iframe>
 </div>
 </div>
 </div>
@@ -332,27 +332,20 @@ const MEMO_TEXT = `ここに備考を入力してください。
 const treeData = [
 
 // 111 親フォルダ
-{id:1, label:'活動報告関連', type:'folder', open:true, children:[
+{id:1, label:'111', type:'folder', open:true, children:[
 
 // 222 子ファイル
-{id:2, label:'活動報告原本', type:'leaf', driveId:'https://docs.google.com/spreadsheets/d/1xXEVHqV0e2dqRo6gyBkip1WW3779UonE/edit?usp=sharing&ouid=116428537516383520070&rtpof=true&sd=true'},
+{id:2, label:'222', type:'leaf', driveId:'ここにGoogleスプレッドシートのID'},
+{id:3, label:'222', type:'leaf', driveId:'ここにGoogleスプレッドシートのID'},
 
 ]},
 
 // 111 親フォルダ
-{id:4, label:'店所点検関連', type:'folder', open:false, children:[
+{id:4, label:'111', type:'folder', open:false, children:[
 
 // 222 子ファイル
-{id:5, label:'報告書', type:'leaf', driveId:'https://docs.google.com/spreadsheets/d/1TdY65vML88sJRbZ5f_58HnBmeGo1z8fR/edit?usp=sharing&ouid=116428537516383520070&rtpof=true&sd=true'},
+{id:5, label:'222', type:'leaf', driveId:'ここにGoogleスプレッドシートのID'},
 
-// 222 子ファイル
-{id:5, label:'報告書２', type:'leaf', driveId:'https://docs.google.com/spreadsheets/d/1HuCHOLXoz-rxTZzdgQN1AkxCFkgJQC2a/edit?usp=sharing&ouid=116428537516383520070&rtpof=true&sd=true'},
-  
-// 111 親フォルダ
-{id:4, label:'添乗関連', type:'folder', open:false, children:[
-
-// 222 子ファイル
-{id:5, label:'見極めシート', type:'leaf', driveId:'https://docs.google.com/document/d/1S0NxBVbF08ADyxOBUtbwiP2iGXCs3_lC/edit?usp=sharing&ouid=116428537516383520070&rtpof=true&sd=true'},
 ]},
 
 ];
@@ -571,7 +564,8 @@ wrap.classList.remove('visible');empty.classList.add('hidden');
 setTimeout(()=>{frame.src=url;applyZoomFrame();setTimeout(()=>wrap.classList.add('visible'),60);},200);
 }
 function getDriveEmbedUrl(fileId){
-return 'https://drive.google.com/file/d/' + fileId + '/preview';
+// Googleスプレッドシート埋め込み用URL
+return 'https://docs.google.com/spreadsheets/d/' + fileId + '/preview';
 }
 
 // ── Zoom ──
